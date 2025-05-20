@@ -32,53 +32,7 @@ Before running the app, ensure you have:
 
 ---
 
-## 📦 Setup Instructions
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/PrajwalCC/mail-auto-reply-system.git
-cd mail-auto-reply-system
-2. Install Dependencies
-bash
-Copy
-Edit
-npm install node-cron googleapis @google-cloud/local-auth readline
-3. Obtain Gmail API Credentials
-Go to Google Cloud Console
-
-Create or select a project
-
-Enable the Gmail API
-
-Create OAuth 2.0 Client ID credentials for a Web/Desktop app
-
-Download and save the credentials as credentials.json in the root folder
-
-▶️ Running the Application
-Start the app with:
-
-bash
-Copy
-Edit
-node index.js
-You will be prompted to visit an authorization URL like:
-
-bash
-Copy
-Edit
-http://localhost:3000/callback?code={YOUR_AUTH_CODE}&scope=https://www.googleapis.com/auth/gmail.modify
-Open the URL
-
-Grant access
-
-Paste the code back into the terminal
-
-💡 Usage Overview
-🔐 Authorization
-The app generates an authorization URL.
-
-Open the link, grant permission, and paste the auth code in the terminal.
 
 🏷️ Label Creation
 Automatically creates a label AUTO_REPLIED_MAILS if it doesn’t exist.
