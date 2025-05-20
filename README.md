@@ -1,75 +1,91 @@
-Overview
-The Automated Email Reply System is a Node.js application that streamlines email management by automating responses to incoming emails while maintaining organized labeling and inbox management within Gmail.
+# 📧 Automated Email Reply System
 
-Key Features
-Authorization Flow
-The system initiates the authorization flow for the Gmail API, generating an authorization URL. Users are prompted to visit the URL, granting consent and generating the required access tokens.
+The **Automated Email Reply System** is a Node.js application that streamlines email management by **automating responses** to incoming Gmail messages and organizing your inbox with **custom labels**.
 
-Label Management
-The application checks for the existence of a custom label named 'AUTO_REPLIED_MAILS' in the user's Gmail account. If the label doesn't exist, it creates it to mark emails that have been automatically replied to.
+---
 
-Email Processing and Reply
-The system fetches unread emails from the user's inbox, extracts necessary details like the sender's email and subject, and constructs personalized replies. It sends these replies back to the respective senders.
+## 🚀 Key Features
 
-Libraries and Technologies Used
-Node.js: The backend of the application is built using Node.js, providing a runtime environment for executing JavaScript code server-side.
+- 🔐 **Authorization Flow**: Initiates OAuth2 flow for Gmail API access via a user-friendly URL prompt.
+- 🏷️ **Label Management**: Creates a label `AUTO_REPLIED_MAILS` to mark auto-replied emails.
+- ✉️ **Email Processing & Reply**: Fetches unread emails, sends custom replies, and labels them to avoid duplicate responses.
 
-Google APIs (googleapis): The application leverages the googleapis library to interact with various Google APIs, particularly the Gmail API for handling email-related operations such as fetching emails, replying to them, and managing labels.
+---
 
-@google-cloud/local-auth: This library facilitates the authentication process, enabling the app to authenticate with Google APIs locally.
+## 🛠️ Technologies Used
 
-Node-cron: Node-cron is used to schedule and run periodic tasks. In this case, it's employed to periodically check for new emails in the inbox and respond to them automatically.
+- **Node.js** – Runtime environment for the backend.
+- **[googleapis](https://www.npmjs.com/package/googleapis)** – Google API client library for Node.js.
+- **[@google-cloud/local-auth](https://www.npmjs.com/package/@google-cloud/local-auth)** – Simplifies OAuth2 authentication.
+- **[node-cron](https://www.npmjs.com/package/node-cron)** – For scheduling periodic inbox checks.
+- **FS (File System)** – Manages token storage and reading/writing credentials.
+- **Readline** – Captures input from the terminal during the OAuth flow.
 
-FS (File System) Module: The FS module in Node.js is used for file system operations, such as reading and writing files. It's used here to manage and store token information required for Gmail API authentication.
+---
 
-Readline: This module provides an interface for reading data from a Readable stream (like the user's input from the terminal). It's used in the authorization flow to prompt the user to enter the authorization code.
+## ✅ Prerequisites
 
-Prerequisites
-Before running this application, ensure that you have the following prerequisites installed and set up:
+Before running the app, ensure you have:
 
-Node.js (version 14 or higher)
-Gmail API credentials (credentials.json) from the Google Cloud Console
-Setup
-Clone the repository
+- Node.js (v14 or higher)
+- Gmail API credentials (`credentials.json`) from Google Cloud Console
 
+---
+
+## 📦 Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/PrajwalCC/mail-auto-reply-system.git
-Install dependencies
-
-Navigate to the cloned repository directory:
-
 cd mail-auto-reply-system
-Install the required dependencies:
-
+2. Install Dependencies
+bash
+Copy
+Edit
 npm install node-cron googleapis @google-cloud/local-auth readline
-Obtain Gmail API credentials
+3. Obtain Gmail API Credentials
+Go to Google Cloud Console
 
-Go to the Google Cloud Console.
-Create a new project or select an existing project.
-Enable the Gmail API for your project.
-Create credentials (OAuth client ID) for a Web/Desktop application.
-Download the credentials JSON file and save it as credentials.json in the project directory.
-Run the application
+Create or select a project
 
-Start the application by running the following command:
+Enable the Gmail API
 
+Create OAuth 2.0 Client ID credentials for a Web/Desktop app
+
+Download and save the credentials as credentials.json in the root folder
+
+▶️ Running the Application
+Start the app with:
+
+bash
+Copy
+Edit
 node index.js
-The application will prompt you to authorize it by visiting a URL in your web browser. Follow the authorization flow and enter the generated authorization code in the terminal from the browser URL bar. Below is a sample URL, where YOUR_CODE is the token you need to put in the terminal.
+You will be prompted to visit an authorization URL like:
 
+bash
+Copy
+Edit
 http://localhost:3000/callback?code={YOUR_AUTH_CODE}&scope=https://www.googleapis.com/auth/gmail.modify
+Open the URL
 
-Usage
-Authorization:
+Grant access
 
-Access the provided authorization URL in your browser to grant access to the Gmail API.
-Upon accessing the URL, follow the prompts to provide consent and obtain an authorization code.
-Label Creation:
+Paste the code back into the terminal
 
-If the 'AUTO_REPLIED_MAILS' label doesn't exist in your Gmail account, the application will create it automatically.
+💡 Usage Overview
+🔐 Authorization
+The app generates an authorization URL.
 
-Automated Email Replies:
+Open the link, grant permission, and paste the auth code in the terminal.
 
-The application will periodically check your inbox for new emails and send automated replies based on predefined message templates.
+🏷️ Label Creation
+Automatically creates a label AUTO_REPLIED_MAILS if it doesn’t exist.
 
-Getting Started:
+🤖 Email Auto-Replies
+Periodically scans your inbox using node-cron.
 
-To begin using the application, follow the setup instructions in the README and run the necessary commands.
+Sends auto-generated replies to unread emails.
+
+Labels them to prevent duplicate responses.
